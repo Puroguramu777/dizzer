@@ -1,0 +1,20 @@
+{# Template part du menu #}
+
+<ul class="list-unstyled">
+    {% for num in [1,2,3,4,5] %}
+    {% if num != currentPage %}
+    <li class="mb-2"><a href="{{ path('page', {numPage: num}) }}" class="btn btn-sm btn-outline-info"><i
+                class="fa-solid fa-newspaper me-3"></i>lien {{num}}</a></li>
+    {# <li class="mb-2"><a href="{{ path('page', {numPage: 2}) }}" class="btn btn-sm btn-outline-info"><i
+                class="fa-solid fa-newspaper me-3"></i>lien 2</a></li>
+    <li class="mb-2"><a href="{{ path('page', {numPage: 3}) }}" class="btn btn-sm btn-outline-info"><i
+                class="fa-solid fa-newspaper me-3"></i>lien 3</a></li> #}
+    {% endif %}
+    {% endfor %}
+
+    {% if currentPage != 0 %}  
+    <li>
+        <a href="{{ path('accueil') }}" class="btn btn-sm btn-outline-info" >Retour à l'accueil</a>
+    </li>
+    {% endif %}
+</ul>
