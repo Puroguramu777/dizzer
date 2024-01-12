@@ -1,0 +1,10 @@
+.toolbar{
+    display: flex;
+    flex-direction: column;
+    background-color: black;  
+    margin-right: 97%;
+    padding-top: 20%;
+    padding-bottom: 26%;
+    
+    
+}
