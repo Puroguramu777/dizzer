@@ -31,7 +31,7 @@ class DizzerController extends AbstractController
         return $this->render("notification/notification.html.twig");
     }
 
-    #[Route("/user", name: "user")]
+    #[Route("/user", name: "User")]
     public function user()
     {
         return $this->render("user/user.html.twig");

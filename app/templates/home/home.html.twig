@@ -5,19 +5,37 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <div class="container">
-        
-    </div>  
+
+<div class="contenu">
+    <h3 class="contenu-title">Découvrez le meilleur de la Musique</h3>
+</div>
     
+      {# {% for author in Dizzer %}
+    <div class="card-header">
+        <h4>{{ author.firstName }}</h4>
+    </div>
+    {% endfor %}  #} 
+
     <div class="toolbar">
         <a href="/playlist"><i class="fa-solid fa-list-ul h1"></i></a>
         <a href="/favourite"><i class="fa-solid fa-heart h1"></i></a>
         <a href="/notification"><i class="fa-solid fa-bell h1"></i></a>
         <a href="/user"><i class="fa-solid fa-user h1"></i></a>
         <a href="/setting"><i class="fa-solid fa-gear h1"></i></a>
-
+        
     </div>
-    
+    <div class="first-music">
+        <h3>First Music</h3>
+    </div>
+    <div class="second-music">
+        <h3>Second Music</h3>
+    </div>
+    <div class="third-music">
+        <h3>Third Music</h3>
+    </div>
+    <div class="fourth-music">
+        <h3>Fourth Music</h3>
+    </div>
     
     
 {% endblock %}

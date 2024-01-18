@@ -1,10 +1,73 @@
 .toolbar{
     display: flex;
     flex-direction: column;
-    background-color: black;  
-    margin-right: 97%;
-    padding-top: 20%;
-    padding-bottom: 26%;
-    padding-left: 4px;
+    width: 45px;
+    background-color: #131416;
+    padding-top: 400px;
+    padding-bottom: 700px;
+    bottom: -300px;
+    position: fixed;
+    
+   
+}
+
+.body{
+    background-image: url("assets/images/108-blue.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    padding-bottom: 20px;
     
 }
+
+ .contenu{
+    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  background-color: #131416;
+  margin-bottom: 100%;
+} 
+
+.contenu-title {
+    font-size: 4em;
+    font-family: arial;
+    background-image: url("assets/images/108-blue.jpg");
+    background-size: cover;
+    background-position: center;
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+
+  .first-music{
+    width: 300px;
+    bottom: 600px;
+    left: 300px;
+    position:absolute;
+  }
+
+  .second-music{
+    width: 300px;
+    bottom: 600px;
+    left: 650px;
+    position:absolute;
+  }
+
+  .third-music{
+    width: 300px;
+    bottom: 600px;
+    left: 1000px;
+    position:absolute;
+  }
+
+  .fourth-music{
+    width: 300px;
+    bottom: 600px;
+    left: 1350px;
+    position:absolute;
+  }
+
