@@ -2,13 +2,18 @@
 
 namespace App\Entity;
 
-use App\Repository\MusicRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MusicRepository;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use DateTimeImmutable;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 #[ORM\Entity(repositoryClass: MusicRepository::class)]
+#[Vich\Uploadable]
 class Music
 {
     #[ORM\Id]
@@ -22,11 +27,32 @@ class Music
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $musicDateCreation = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: "string",length: 255, nullable: true)]
     private ?string $fileName = null;
 
     #[ORM\ManyToMany(targetEntity: Author::class, mappedBy: 'music')]
     private Collection $authors;
+
+    #[Vich\UploadableField(mapping: "musics", fileNameProperty: "filename")]
+    private ? File $imageFile=null;
+
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $updateAtt = null;
+
+    public function getImageFile() : ?File
+     {
+        return $this->imageFile;
+     }
+
+     public function setImageFile(?File $imageFile): Music
+     {
+        $this->imageFile = $imageFile;
+        if( $imageFile !== null){
+            $this->updateAtt = new \DateTime("now");
+        }
+        return $this;
+     }
 
     public function __construct()
     {
@@ -67,7 +93,7 @@ class Music
         return $this->fileName;
     }
 
-    public function setFileName(?string $fileName): static
+    public function setFileName(?string $fileName): Music
     {
         $this->fileName = $fileName;
 
@@ -97,6 +123,18 @@ class Music
         if ($this->authors->removeElement($author)) {
             $author->removeMusic($this);
         }
+
+        return $this;
+    }
+
+    public function getUpdateAtt(): ?\DateTimeInterface
+    {
+        return $this->updateAtt;
+    }
+
+    public function setUpdateAtt(?\DateTimeInterface $updateAtt): static
+    {
+        $this->updateAtt = $updateAtt;
 
         return $this;
     }

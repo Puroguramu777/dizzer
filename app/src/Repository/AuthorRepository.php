@@ -21,6 +21,12 @@ class AuthorRepository extends ServiceEntityRepository
         parent::__construct($registry, Author::class);
     }
 
+    public function orderByName($direction)
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.lastName', $direction);
+    }
+
 //    /**
 //     * @return Author[] Returns an array of Author objects
 //     */

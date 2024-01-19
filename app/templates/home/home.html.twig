@@ -27,7 +27,7 @@
                     <img src="{{ asset('images/default.jpg') }}"
                          alt="image de la musique" class="card-img-top" />
                          {% else %}
-                         <img src="{{ vich_uploader_asset(musics, "imageFile") }}"
+                         <img src="{{ vich_uploader_asset(music, "imageFile") }}"
                                  alt="couverture du livre" class="card-img-top" />
                          {% endif %}
                          <div class="card-header">
@@ -35,9 +35,13 @@
                          </div>
                          <div class="card-body ">
                               {% for author in music.authors %}
-                            {{ author.firstName }}
+                            Artiste: {{ author.firstName }}
                             {% endfor %}  
                         </div>
+                        <a href="{{ path("editmusic", {id : music.id}) }}"
+                           class="btn btn-sm btn-outline-danger">
+                            <i class="fas fa-edit"></i>
+                        </a>
                         
                         
                     </div>

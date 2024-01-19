@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %} 
+{% block body %}
+<div class="contenu">
+    <h3 class="contenu-title">Edition d'une Musique</h3>
+</div>
+
+    
+    {{ form_start(form) }}
+    <div class="row">
+        {{ form_row(form.musicName) }}
+    </div>
+    <div class="row">
+        <div class="cold-md-4">{{ form_row(form.musicDateCreation) }}</div>
+    </div>
+    <div class="container d-flex justify-content-center">
+        
+        <a href="{{ path('Accueil') }}" class="btn btn-warning me-3">Annuler</a>
+        {{ form_row(form.save) }}
+    </div>
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+{% endblock %}
