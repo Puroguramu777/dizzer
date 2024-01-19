@@ -2,15 +2,26 @@
 
 namespace App\Controller;
 
+use App\Repository\MusicRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;
 
 class DizzerController extends AbstractController
 {
+
+    private $musicRepo;
+
+    public function __construct(MusicRepository $bookRepository)
+    {
+        $this->musicRepo = $bookRepository;
+    }
+
     #[Route("/home", name: "Accueil")]
     public function home()
     {
-        return $this->render("home/home.html.twig");
+        return $this->render("home/home.html.twig", [
+            "musics" => $this->musicRepo->findAllMusic()
+        ]);
     }
 
     #[Route("/playlist", name: "Playlist")]

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MusicRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,9 +22,16 @@ class Music
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $musicDateCreation = null;
 
-    #[ORM\ManyToOne(inversedBy: 'music')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Author $author = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $fileName = null;
+
+    #[ORM\ManyToMany(targetEntity: Author::class, mappedBy: 'music')]
+    private Collection $authors;
+
+    public function __construct()
+    {
+        $this->authors = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -53,14 +62,41 @@ class Music
         return $this;
     }
 
-    public function getAuthor(): ?Author
+    public function getFileName(): ?string
     {
-        return $this->author;
+        return $this->fileName;
     }
 
-    public function setAuthor(?Author $author): static
+    public function setFileName(?string $fileName): static
     {
-        $this->author = $author;
+        $this->fileName = $fileName;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Author>
+     */
+    public function getAuthors(): Collection
+    {
+        return $this->authors;
+    }
+
+    public function addAuthor(Author $author): static
+    {
+        if (!$this->authors->contains($author)) {
+            $this->authors->add($author);
+            $author->addMusic($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAuthor(Author $author): static
+    {
+        if ($this->authors->removeElement($author)) {
+            $author->removeMusic($this);
+        }
 
         return $this;
     }

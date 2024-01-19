@@ -21,6 +21,20 @@ class MusicRepository extends ServiceEntityRepository
         parent::__construct($registry, Music::class);
     }
 
+    public function findAllMusic()
+    {
+        $db = $this->findAllOptimize();
+        return $db->getQuery()->getResult();
+    }
+
+    public function findAllOptimize()
+    {
+        return $this->createQueryBuilder('m')
+            ->leftJoin('m.authors', 'author')
+            ->addSelect('author');
+            
+    }
+
 //    /**
 //     * @return Music[] Returns an array of Music objects
 //     */

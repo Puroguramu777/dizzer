@@ -10,13 +10,7 @@
     <h3 class="contenu-title">Découvrez le meilleur de la Musique</h3>
 </div>
     
-      {# {% for author in Dizzer %}
-    <div class="card-header">
-        <h4>{{ author.firstName }}</h4>
-    </div>
-    {% endfor %}  #} 
-
-    <div class="toolbar">
+      <div class="toolbar">
         <a href="/playlist"><i class="fa-solid fa-list-ul h1"></i></a>
         <a href="/favourite"><i class="fa-solid fa-heart h1"></i></a>
         <a href="/notification"><i class="fa-solid fa-bell h1"></i></a>
@@ -24,18 +18,31 @@
         <a href="/setting"><i class="fa-solid fa-gear h1"></i></a>
         
     </div>
-    <div class="first-music">
-        <h3>First Music</h3>
-    </div>
-    <div class="second-music">
-        <h3>Second Music</h3>
-    </div>
-    <div class="third-music">
-        <h3>Third Music</h3>
-    </div>
-    <div class="fourth-music">
-        <h3>Fourth Music</h3>
-    </div>
+
     
+    <div class="row d-flex flex-row justify-content-center">
+    {% for music in musics %}
+            <div class="card border-primary text-white bg-info mb-4 me-5 mt-4" style="width: 15%">
+                {% if music.filename is null %}
+                    <img src="{{ asset('images/default.jpg') }}"
+                         alt="image de la musique" class="card-img-top" />
+                         {% else %}
+                         <img src="{{ vich_uploader_asset(musics, "imageFile") }}"
+                                 alt="couverture du livre" class="card-img-top" />
+                         {% endif %}
+                         <div class="card-header">
+                            {{ music.musicName}}
+                         </div>
+                         <div class="card-body ">
+                              {% for author in music.authors %}
+                            {{ author.firstName }}
+                            {% endfor %}  
+                        </div>
+                        
+                        
+                    </div>
+                    
+                    {% endfor %}
+                </div>
     
 {% endblock %}

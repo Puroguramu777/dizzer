@@ -16,12 +16,12 @@ class Author
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $FirstName = null;
+    private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $LastName = null;
+    private ?string $lastName = null;
 
-    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Music::class)]
+    #[ORM\ManyToMany(targetEntity: Music::class, inversedBy: 'authors')]
     private Collection $music;
 
     public function __construct()
@@ -36,24 +36,24 @@ class Author
 
     public function getFirstName(): ?string
     {
-        return $this->FirstName;
+        return $this->firstName;
     }
 
-    public function setFirstName(string $FirstName): static
+    public function setFirstName(string $firstName): static
     {
-        $this->FirstName = $FirstName;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     public function getLastName(): ?string
     {
-        return $this->LastName;
+        return $this->lastName;
     }
 
-    public function setLastName(string $LastName): static
+    public function setLastName(string $lastName): static
     {
-        $this->LastName = $LastName;
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -70,7 +70,6 @@ class Author
     {
         if (!$this->music->contains($music)) {
             $this->music->add($music);
-            $music->setAuthor($this);
         }
 
         return $this;
@@ -78,12 +77,7 @@ class Author
 
     public function removeMusic(Music $music): static
     {
-        if ($this->music->removeElement($music)) {
-            // set the owning side to null (unless already changed)
-            if ($music->getAuthor() === $this) {
-                $music->setAuthor(null);
-            }
-        }
+        $this->music->removeElement($music);
 
         return $this;
     }

@@ -24,7 +24,7 @@ class AppFixtures extends Fixture
               $song = new Music();
               $song->setMusicName($faker->word(1, true))
                     ->setMusicDateCreation($faker->dateTime('now'))
-                    ->setAuthor($this->getReference("auteur". rand(0,9)));
+                    ->addAuthor($this->getReference("auteur". rand(0,9)));
              $manager->persist($song);
           }     
         

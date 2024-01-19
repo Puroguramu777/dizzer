@@ -12,11 +12,11 @@
 }
 
 .body{
-    background-image: url("assets/images/108-blue.jpg");
+    background-image: url("assets/108-blue.jpg");
     background-size: cover;
     background-position: center;
     width: 100%;
-    padding-bottom: 20px;
+    padding-bottom: 1000px;
     
 }
 
@@ -27,16 +27,17 @@
   align-items: center;
   height: 150px;
   background-color: #131416;
-  margin-bottom: 100%;
+  
+  
 } 
 
 .contenu-title {
     font-size: 4em;
     font-family: arial;
-    background-image: url("assets/images/108-blue.jpg");
+    background-image: url("assets/108-blue.jpg");
     background-size: cover;
     background-position: center;
-
+    
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -50,24 +51,5 @@
     position:absolute;
   }
 
-  .second-music{
-    width: 300px;
-    bottom: 600px;
-    left: 650px;
-    position:absolute;
-  }
-
-  .third-music{
-    width: 300px;
-    bottom: 600px;
-    left: 1000px;
-    position:absolute;
-  }
-
-  .fourth-music{
-    width: 300px;
-    bottom: 600px;
-    left: 1350px;
-    position:absolute;
-  }
+ 
 
